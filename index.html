@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام إدارة الشحن</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>تسجيل الدخول</h2>
+        <input type="text" id="username" placeholder="اسم المستخدم">
+        <input type="password" id="password" placeholder="كلمة المرور">
+        <button onclick="login()">تسجيل الدخول</button>
+        <button onclick="forgotPassword()">نسيت كلمة المرور؟</button>
+    </div>
+
+    <div id="dashboard" class="hidden">
+        <h2>لوحة التحكم</h2>
+        <button onclick="showSection('add-user')">إضافة مستخدم جديد</button>
+        <button onclick="showSection('add-order')">إضافة أوردر جديد</button>
+        <button onclick="showSection('manage-stock')">إدارة المخزون</button>
+        <button onclick="showSection('manage-users')">إدارة المستخدمين</button>
+
+        <!-- إضافة مستخدم جديد -->
+        <div id="add-user" class="tab-content">
+            <h3>إضافة مستخدم جديد</h3>
+            <input type="text" id="new-username" placeholder="اسم المستخدم">
+            <input type="password" id="new-password" placeholder="كلمة المرور">
+            <select id="user-role">
+                <option value="مندوب">مندوب</option>
+                <option value="مخزن">مخزن</option>
+                <option value="ماستر">ماستر</option>
+            </select>
+            <button onclick="addUser()">إضافة المستخدم</button>
+        </div>
+
+        <!-- إضافة أوردر جديد -->
+        <div id="add-order" class="tab-content">
+            <h3>إضافة أوردر جديد</h3>
+            <input type="text" id="order-id" placeholder="رقم الأوردر">
+            <input type="text" id="recipient-phone" placeholder="رقم المرسل إليه">
+            <input type="text" id="recipient-address" placeholder="عنوان المرسل إليه">
+            <input type="number" id="amount-due" placeholder="المبلغ المستحق">
+            <input type="number" id="commission" placeholder="مبلغ العمولة">
+            <select id="assigned-user">
+                <option value="">اختر المستخدم</option>
+            </select>
+            <button onclick="addOrder()">إضافة الأوردر</button>
+        </div>
+
+        <!-- إدارة المخزون -->
+        <div id="manage-stock" class="tab-content">
+            <h3>إدارة المخزون</h3>
+            <ul id="stock-list"></ul>
+            <button onclick="exportToExcel()">طباعة إلى Excel</button>
+            <p>إجمالي المبلغ المستلم: <span id="total-amount">0</span> جنيه</p>
+            <p>إجمالي العمولة: <span id="total-commission">0</span> جنيه</p>
+        </div>
+
+        <!-- إدارة المستخدمين -->
+        <div id="manage-users" class="tab-content">
+            <h3>إدارة المستخدمين</h3>
+            <ul id="users-list"></ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
